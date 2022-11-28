@@ -16,7 +16,7 @@ public class Student_PaymentDAOImplementation implements Student_PaymentDAO {
     public boolean addPayment(Student_Payment student_payment){
         try(Session session= HibernateSessionUtil.getSession()){
             Transaction transaction=session.beginTransaction();
-            Bills bills=student_payment.getBill();
+            Bills bills=session.get(Bills.class,student_payment.getBill().getBill_id());
             bills.setRemaining(bills.getRemaining()-student_payment.getAmount());
             session.saveOrUpdate(bills);
             session.saveOrUpdate(student_payment);

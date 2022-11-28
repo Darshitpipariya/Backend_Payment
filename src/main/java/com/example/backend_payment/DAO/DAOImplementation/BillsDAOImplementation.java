@@ -16,6 +16,7 @@ public class BillsDAOImplementation implements BillsDAO {
     public boolean addBills(Bills bills){
         try(Session session= HibernateSessionUtil.getSession()){
             Transaction transaction=session.beginTransaction();
+            bills.setRemaining(bills.getAmount());
             session.saveOrUpdate(bills);
             transaction.commit();
             return true;
