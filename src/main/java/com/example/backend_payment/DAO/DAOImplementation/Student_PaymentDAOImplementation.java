@@ -18,6 +18,7 @@ public class Student_PaymentDAOImplementation implements Student_PaymentDAO {
             Transaction transaction=session.beginTransaction();
             Bills bills=session.get(Bills.class,student_payment.getBill().getBill_id());
             bills.setRemaining(bills.getRemaining()-student_payment.getAmount());
+            student_payment.setRemaining(bills.getRemaining()-student_payment.getAmount());
             session.saveOrUpdate(bills);
             session.saveOrUpdate(student_payment);
             transaction.commit();

@@ -19,6 +19,9 @@ public class Student_Payment {
     @JoinColumn(name="bill_id")
     private Bills bill;
 
+    @Column(name="remaining")
+    private int remaining;
+
     public Student_Payment() {
     }
 
@@ -60,6 +63,14 @@ public class Student_Payment {
         this.payment_date = payment_date;
     }
 
+    public int getRemaining() {
+        return remaining;
+    }
+
+    public void setRemaining(int remaining) {
+        this.remaining = remaining;
+    }
+
     public Bills getBill() {
         return bill;
     }
@@ -68,12 +79,14 @@ public class Student_Payment {
         this.bill = bill;
     }
 
+
     @Override
     public String toString() {
         return "Student_Payment{" +
-                "description='" + description + '\'' +
-                ", amount=" + amount +
+                "amount=" + amount +
                 ", payment_date='" + payment_date + '\'' +
+                ", bill=" + bill +
+                ", remaining=" + remaining +
                 '}';
     }
 }
